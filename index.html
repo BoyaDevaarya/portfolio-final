@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEVAARYA.EXE // Boya Devaarya - AI & Data Science Student</title>
+  <meta name="description" content="Personal futuristic game interface portfolio of Boya Devaarya, a B.Tech Artificial Intelligence & Data Science student at REVA University.">
+  <meta name="theme-color" content="#090a10">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DEVAARYA.EXE // Boya Devaarya Portfolio">
+  <meta property="og:description" content="AI & Data Science Student // Developer // Builder // Explorer">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Interactive Grid Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div id="cursor-dot" class="cursor-dot"></div>
+  <div id="cursor-ring" class="cursor-ring"></div>
+
+  <!-- Boot Screen Loading Intro -->
+  <div id="boot-screen" class="boot-screen">
+    <div class="boot-container">
+      <div class="boot-header">
+        <span class="hud-tag">SYSTEM BOOT SEQUENCE v2.06</span>
+        <span class="boot-clock" id="boot-clock">00:00:00</span>
+      </div>
+      <div class="boot-terminal" id="boot-terminal">
+        <div class="boot-line">&gt; INITIALIZING DEVAARYA.EXE...</div>
+      </div>
+      <div class="boot-progress-bar">
+        <div class="boot-progress-fill" id="boot-progress-fill"></div>
+      </div>
+      <div class="boot-footer">
+        <button id="skip-boot-btn" class="btn-skip" title="Skip Intro">[ SKIP INTRO // ESC ]</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress / XP Bar -->
+  <div class="scroll-xp-container">
+    <div class="scroll-xp-label">XP PROGRESS</div>
+    <div class="scroll-xp-track">
+      <div id="scroll-xp-bar" class="scroll-xp-fill"></div>
+    </div>
+    <div id="scroll-xp-percent" class="scroll-xp-val">0%</div>
+  </div>
+
+  <!-- Header HUD Navbar -->
+  <header id="hud-nav" class="hud-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-text">DEVAARYA<span class="accent-ext">.EXE</span></span>
+        <span class="status-indicator" title="System Online">
+          <span class="status-dot"></span> ONLINE
+        </span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link"><span class="nav-num">01</span> ABOUT</a>
+        <a href="#quests" class="nav-link"><span class="nav-num">02</span> QUESTS</a>
+        <a href="#skills" class="nav-link"><span class="nav-num">03</span> SKILLS</a>
+        <a href="#achievements" class="nav-link"><span class="nav-num">04</span> ACHIEVEMENTS</a>
+        <a href="#contact" class="nav-link"><span class="nav-num">05</span> CONTACT</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button id="sfx-toggle" class="sfx-btn" aria-label="Toggle Sound Effects" title="Toggle Sound FX">
+          <span class="sfx-icon">🔊</span> <span class="sfx-text">SFX: ON</span>
+        </button>
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg-hud">
+        <div class="hud-circle hud-circle-1"></div>
+        <div class="hud-circle hud-circle-2"></div>
+        <div class="hud-grid-overlay"></div>
+      </div>
+
+      <div class="section-container hero-grid">
+        <!-- Hero Left Column -->
+        <div class="hero-left">
+          <div class="hud-sys-label">
+            <span class="pulse-dot"></span> PLAYER 01 // ONLINE
+          </div>
+          <h1 class="hero-title">
+            <span class="name-first">BOYA</span>
+            <span class="name-last glow-text">DEVAARYA</span>
+          </h1>
+          <div class="hero-subheading">AI &amp; DATA SCIENCE STUDENT</div>
+          <div class="hero-tags">
+            <span class="tag-item">DEVELOPER</span>
+            <span class="tag-sep">//</span>
+            <span class="tag-item">BUILDER</span>
+            <span class="tag-sep">//</span>
+            <span class="tag-item">EXPLORER</span>
+          </div>
+
+          <p class="hero-description">
+            "Building things, learning constantly, and turning ideas into working projects."
+          </p>
+
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-primary hud-btn">
+              <span class="btn-corner tl"></span><span class="btn-corner br"></span>
+              [ START EXPLORING ]
+            </a>
+            <a href="#quests" class="btn btn-outline hud-btn">
+              <span class="btn-corner tl"></span><span class="btn-corner br"></span>
+              [ VIEW PROJECTS ]
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Player Profile / HUD Card -->
+        <div class="hero-right">
+          <div class="hud-card-wrapper">
+            <!-- Rotating HUD Circle Decoration -->
+            <div class="rotating-hud-ring">
+              <svg viewBox="0 0 300 300" class="ring-svg">
+                <circle cx="150" cy="150" r="140" stroke="rgba(168, 85, 247, 0.35)" stroke-width="1.5" fill="none" stroke-dasharray="10 15 30 15" />
+                <circle cx="150" cy="150" r="120" stroke="rgba(0, 240, 255, 0.4)" stroke-width="1.5" fill="none" stroke-dasharray="40 20" />
+                <circle cx="150" cy="150" r="95" stroke="rgba(168, 85, 247, 0.25)" stroke-width="1" fill="none" />
+              </svg>
+            </div>
+
+            <div class="hud-card glass-panel">
+              <div class="hud-card-header">
+                <div class="avatar-box">
+                  <img src="assets/avatar.jpg" alt="Boya Devaarya Profile Avatar" class="avatar-img">
+                  <span class="avatar-glow"></span>
+                  <div class="avatar-hud-reticle"></div>
+                </div>
+                <div class="player-info">
+                  <div class="info-row">
+                    <span class="label">PLAYER:</span>
+                    <span class="val name">BOYA DEVAARYA</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="label">LEVEL:</span>
+                    <span class="val level glow-cyan">18</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="label">CLASS:</span>
+                    <span class="val class-name">AI / DATA SCIENCE</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="label">STATUS:</span>
+                    <span class="val status-online">ONLINE <span class="dot">●</span></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Overall XP Bar -->
+              <div class="player-xp-block">
+                <div class="xp-header">
+                  <span>SYSTEM XP</span>
+                  <span class="xp-ratio">80 / 100 XP (80%)</span>
+                </div>
+                <div class="xp-track">
+                  <div class="xp-fill" data-progress="80%" style="width: 80%;"></div>
+                </div>
+              </div>
+
+              <!-- Sub Stats Grid -->
+              <div class="hud-sub-stats">
+                <div class="stat-row">
+                  <div class="stat-meta">
+                    <span class="stat-name">C</span>
+                    <span class="stat-val">70%</span>
+                  </div>
+                  <div class="mini-bar-track">
+                    <div class="mini-bar-fill" data-progress="70%" style="width: 70%;"></div>
+                  </div>
+                </div>
+
+                <div class="stat-row">
+                  <div class="stat-meta">
+                    <span class="stat-name">PYTHON</span>
+                    <span class="stat-val">80%</span>
+                  </div>
+                  <div class="mini-bar-track">
+                    <div class="mini-bar-fill accent-purple" data-progress="80%" style="width: 80%;"></div>
+                  </div>
+                </div>
+
+                <div class="stat-row">
+                  <div class="stat-meta">
+                    <span class="stat-name">WEB</span>
+                    <span class="stat-val">75%</span>
+                  </div>
+                  <div class="mini-bar-track">
+                    <div class="mini-bar-fill accent-cyan" data-progress="75%" style="width: 75%;"></div>
+                  </div>
+                </div>
+
+                <div class="stat-row">
+                  <div class="stat-meta">
+                    <span class="stat-name">DSA</span>
+                    <span class="stat-val">65%</span>
+                  </div>
+                  <div class="mini-bar-track">
+                    <div class="mini-bar-fill" data-progress="65%" style="width: 65%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HUD Footer Stats -->
+              <div class="hud-card-footer">
+                <span>FPS: <strong id="fps-counter">60</strong></span>
+                <span>LATENCY: <strong class="glow-cyan">14ms</strong></span>
+                <span>LOC: <strong>BLR//IN</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 // ABOUT SECTION -->
+    <section id="about" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">[ SYSTEM DIRECTORY ]</div>
+          <h2 class="section-title"><span class="title-num">01 //</span> PLAYER PROFILE</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Profile Card -->
+          <div class="about-card-col">
+            <div class="profile-spec-card glass-panel">
+              <div class="card-hud-corners">
+                <span class="c-tl"></span><span class="c-tr"></span><span class="c-bl"></span><span class="c-br"></span>
+              </div>
+
+              <div class="about-avatar-wrapper">
+                <div class="about-avatar-box">
+                  <img src="assets/avatar.jpg" alt="Boya Devaarya Full Portrait" class="about-avatar-img">
+                </div>
+              </div>
+
+              <div class="profile-card-header">
+                <div class="badge-icon">⚡</div>
+                <div>
+                  <h3 class="profile-card-name">BOYA DEVAARYA</h3>
+                  <p class="profile-card-sub">AI &amp; Data Science Undergraduate</p>
+                </div>
+              </div>
+              <div class="spec-divider"></div>
+              <ul class="spec-list">
+                <li><span class="spec-label">AFFILIATION:</span> <span class="spec-val">REVA University</span></li>
+                <li><span class="spec-label">CORE DOMAIN:</span> <span class="spec-val">Machine Intelligence &amp; Software</span></li>
+                <li><span class="spec-label">PRIMARY LANG:</span> <span class="spec-val">Python, C, JavaScript</span></li>
+                <li><span class="spec-label">HUD SYSTEM:</span> <span class="spec-val glow-purple">DEVAARYA.EXE v2.06</span></li>
+              </ul>
+              <div class="card-status-banner">
+                <span class="pulse-indicator"></span> DEPLOYABLE FOR COLLABORATIONS
+              </div>
+            </div>
+          </div>
+
+          <!-- About Text Content & Metadata -->
+          <div class="about-content-col">
+            <div class="about-text-box glass-panel">
+              <p class="about-paragraph">
+                I'm <strong>Boya Devaarya</strong>, a B.Tech Artificial Intelligence &amp; Data Science student who enjoys building projects, experimenting with technology, and learning by actually making things.
+              </p>
+              <p class="about-paragraph">
+                I'm currently exploring Python, C, web development, data structures, and AI-related technologies.
+              </p>
+              <p class="about-paragraph">
+                I like turning ideas into practical projects and constantly leveling up my skills.
+              </p>
+            </div>
+
+            <!-- 4 Metadata Cards Grid -->
+            <div class="metadata-grid">
+              <div class="meta-card glass-panel">
+                <div class="meta-label">LOCATION</div>
+                <div class="meta-val">Bengaluru, India</div>
+                <div class="meta-icon">📍</div>
+              </div>
+
+              <div class="meta-card glass-panel">
+                <div class="meta-label">EDUCATION</div>
+                <div class="meta-val">B.Tech AI &amp; Data Science</div>
+                <div class="meta-icon">🎓</div>
+              </div>
+
+              <div class="meta-card glass-panel">
+                <div class="meta-label">EXPECTED GRADUATION</div>
+                <div class="meta-val">2029</div>
+                <div class="meta-icon">⏳</div>
+              </div>
+
+              <div class="meta-card glass-panel glow-border-purple">
+                <div class="meta-label">CURRENT MISSION</div>
+                <div class="meta-val glow-cyan">LEARN // BUILD // SHIP</div>
+                <div class="meta-icon">🚀</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 // QUEST LOG (PROJECTS) -->
+    <section id="quests" class="section-padding bg-alt">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">[ ACTIVE MISSIONS ]</div>
+          <h2 class="section-title"><span class="title-num">02 //</span> QUEST LOG</h2>
+          <p class="section-sub">Deployable software projects and experimental builds.</p>
+        </div>
+
+        <div class="quests-grid">
+          <!-- QUEST 01 -->
+          <div class="quest-card glass-panel" data-quest-id="01">
+            <div class="quest-hud-top">
+              <span class="quest-id">QUEST_01</span>
+              <span class="quest-rank">DIFFICULTY: NORMAL // RANK A</span>
+            </div>
+
+            <div class="quest-body">
+              <h3 class="quest-title">SMART EXPENSE TRACKER</h3>
+              <p class="quest-desc">
+                "A Streamlit application designed to help users track and understand their expenses."
+              </p>
+
+              <div class="quest-tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Data Analytics</span>
+              </div>
+            </div>
+
+            <div class="quest-hud-bottom">
+              <div class="quest-status">
+                <span class="status-dot-green"></span> STATUS: COMPLETED
+              </div>
+              <a href="https://smart-expense-tracker-eczamosartqmer5cvrwwcq.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn btn-quest">
+                [ LAUNCH QUEST ] <span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- QUEST 02 -->
+          <div class="quest-card glass-panel" data-quest-id="02">
+            <div class="quest-hud-top">
+              <span class="quest-id">QUEST_02</span>
+              <span class="quest-rank">DIFFICULTY: EXPERIMENTAL // RANK S</span>
+            </div>
+
+            <div class="quest-body">
+              <h3 class="quest-title">DEVAARYA PORTFOLIO</h3>
+              <p class="quest-desc">
+                "A personal portfolio experience built around creativity, technology and experimentation."
+              </p>
+
+              <div class="quest-tech-stack">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+            </div>
+
+            <div class="quest-hud-bottom">
+              <div class="quest-status">
+                <span class="status-dot-purple"></span> STATUS: UNLOCKED
+              </div>
+              <a href="https://huggingface.co/spaces/Devaarya/devaarya-portfolio-anime-theme" target="_blank" rel="noopener noreferrer" class="btn btn-quest">
+                [ LAUNCH QUEST ] <span class="btn-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 // SKILL TREE -->
+    <section id="skills" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">[ CAPABILITY SPECS ]</div>
+          <h2 class="section-title"><span class="title-num">03 //</span> SKILL TREE</h2>
+          <p class="section-sub">Hover over any skill node to inspect detailed experience metrics.</p>
+        </div>
+
+        <div class="skill-tree-grid">
+          <!-- Programming Category -->
+          <div class="skill-branch glass-panel">
+            <div class="branch-header">
+              <span class="branch-icon">⚡</span>
+              <h3 class="branch-title">PROGRAMMING</h3>
+            </div>
+
+            <div class="skill-nodes-list">
+              <!-- Python -->
+              <div class="skill-node" data-skill="PYTHON" data-xp="80" data-level="Level 80" data-projects="Smart Expense Tracker, Automation" data-status="Active Mastery">
+                <div class="skill-info">
+                  <span class="skill-name">PYTHON</span>
+                  <span class="skill-xp">80 XP</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill accent-purple" data-progress="80%" style="width: 80%;"></div>
+                </div>
+                <div class="skill-ascii-bar">████████░░ 80 XP</div>
+              </div>
+
+              <!-- C -->
+              <div class="skill-node" data-skill="C" data-xp="70" data-level="Level 70" data-projects="Academic Labs, Low-level Concepts" data-status="Active Study">
+                <div class="skill-info">
+                  <span class="skill-name">C</span>
+                  <span class="skill-xp">70 XP</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-progress="70%" style="width: 70%;"></div>
+                </div>
+                <div class="skill-ascii-bar">███████░░░ 70 XP</div>
+              </div>
+
+              <!-- HTML -->
+              <div class="skill-node" data-skill="HTML" data-xp="75" data-level="Level 75" data-projects="Web Portfolios, UI Apps" data-status="Solid Proficiency">
+                <div class="skill-info">
+                  <span class="skill-name">HTML</span>
+                  <span class="skill-xp">75 XP</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill accent-cyan" data-progress="75%" style="width: 75%;"></div>
+                </div>
+                <div class="skill-ascii-bar">███████½░░ 75 XP</div>
+              </div>
+
+              <!-- CSS -->
+              <div class="skill-node" data-skill="CSS" data-xp="75" data-level="Level 75" data-projects="DEVAARYA.EXE HUD, Animations" data-status="Solid Proficiency">
+                <div class="skill-info">
+                  <span class="skill-name">CSS</span>
+                  <span class="skill-xp">75 XP</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill accent-purple" data-progress="75%" style="width: 75%;"></div>
+                </div>
+                <div class="skill-ascii-bar">███████½░░ 75 XP</div>
+              </div>
+
+              <!-- JavaScript -->
+              <div class="skill-node" data-skill="JAVASCRIPT" data-xp="70" data-level="Level 70" data-projects="Interactive HUD, Canvas Logic" data-status="Active Mastery">
+                <div class="skill-info">
+                  <span class="skill-name">JAVASCRIPT</span>
+                  <span class="skill-xp">70 XP</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill accent-cyan" data-progress="70%" style="width: 70%;"></div>
+                </div>
+                <div class="skill-ascii-bar">███████░░░ 70 XP</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Currently Unlocking Category -->
+          <div class="skill-branch glass-panel">
+            <div class="branch-header">
+              <span class="branch-icon">🔓</span>
+              <h3 class="branch-title">CURRENTLY UNLOCKING</h3>
+            </div>
+
+            <div class="unlock-nodes-list">
+              <!-- DSA -->
+              <div class="unlock-node glass-panel-sub" data-skill="DATA STRUCTURES" data-status="In Progress // Leveling Up" data-details="Algorithmic optimization, arrays, linked lists, trees &amp; recursion.">
+                <div class="unlock-header">
+                  <span class="unlock-icon">🧠</span>
+                  <span class="unlock-name">DATA STRUCTURES</span>
+                  <span class="unlock-tag glow-purple">IN PROGRESS</span>
+                </div>
+                <p class="unlock-desc">Building strong foundational problem-solving and algorithmic thinking.</p>
+                <div class="unlock-progress-line">
+                  <div class="unlock-fill" data-progress="65%" style="width: 65%;"></div>
+                </div>
+              </div>
+
+              <!-- WEB DEVELOPMENT -->
+              <div class="unlock-node glass-panel-sub" data-skill="WEB DEVELOPMENT" data-status="In Progress // Building Projects" data-details="Modern frontend architectures, responsive UI, component workflows.">
+                <div class="unlock-header">
+                  <span class="unlock-icon">🌐</span>
+                  <span class="unlock-name">WEB DEVELOPMENT</span>
+                  <span class="unlock-tag glow-cyan">BUILDING PROJECTS</span>
+                </div>
+                <p class="unlock-desc">Crafting interactive web applications and high-performance interfaces.</p>
+                <div class="unlock-progress-line">
+                  <div class="unlock-fill accent-cyan" data-progress="75%" style="width: 75%;"></div>
+                </div>
+              </div>
+
+              <!-- AI / ML -->
+              <div class="unlock-node glass-panel-sub" data-skill="AI / ML" data-status="In Progress // Core Discipline" data-details="Machine intelligence, data modeling, neural concepts &amp; Python AI tools.">
+                <div class="unlock-header">
+                  <span class="unlock-icon">🤖</span>
+                  <span class="unlock-name">AI / ML</span>
+                  <span class="unlock-tag glow-purple">CORE DISCIPLINE</span>
+                </div>
+                <p class="unlock-desc">Deep diving into data science, artificial intelligence and machine learning models.</p>
+                <div class="unlock-progress-line">
+                  <div class="unlock-fill accent-purple" data-progress="60%" style="width: 60%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Tooltip Container -->
+        <div id="skill-tooltip" class="skill-tooltip hidden">
+          <div id="tooltip-title" class="tooltip-title">SKILL NAME</div>
+          <div id="tooltip-level" class="tooltip-line">LEVEL: --</div>
+          <div id="tooltip-projects" class="tooltip-line">PROJECTS: --</div>
+          <div id="tooltip-status" class="tooltip-line">STATUS: --</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 // ACHIEVEMENTS -->
+    <section id="achievements" class="section-padding bg-alt">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">[ ACCOMPLISHMENT LOG ]</div>
+          <h2 class="section-title"><span class="title-num">04 //</span> ACHIEVEMENTS</h2>
+          <p class="section-sub">Milestones, certifications, and project badges unlocked.</p>
+        </div>
+
+        <div class="achievements-grid">
+          <!-- Achievement 1 -->
+          <div class="achievement-card glass-panel">
+            <div class="achievement-header">
+              <div class="achievement-icon">🏆</div>
+              <span class="badge-status unlocked">UNLOCKED</span>
+            </div>
+            <h3 class="achievement-title">PYTHON INITIATED</h3>
+            <p class="achievement-desc">Completed IBM SkillsBuild Python certification.</p>
+            <div class="achievement-footer">
+              <span class="achieve-tag">IBM SKILLSBUILD</span>
+            </div>
+          </div>
+
+          <!-- Achievement 2 -->
+          <div class="achievement-card glass-panel">
+            <div class="achievement-header">
+              <div class="achievement-icon">⚡</div>
+              <span class="badge-status unlocked">UNLOCKED</span>
+            </div>
+            <h3 class="achievement-title">HACKATHON SURVIVOR</h3>
+            <p class="achievement-desc">Participated in an Algorand hackathon.</p>
+            <div class="achievement-footer">
+              <span class="achieve-tag">ALGORAND HACKATHON</span>
+            </div>
+          </div>
+
+          <!-- Achievement 3 -->
+          <div class="achievement-card glass-panel">
+            <div class="achievement-header">
+              <div class="achievement-icon">🔓</div>
+              <span class="badge-status unlocked">UNLOCKED</span>
+            </div>
+            <h3 class="achievement-title">BUILDER</h3>
+            <p class="achievement-desc">Created multiple personal and academic projects.</p>
+            <div class="achievement-footer">
+              <span class="achieve-tag">PROJECT DEPLOYMENTS</span>
+            </div>
+          </div>
+
+          <!-- Achievement 4 -->
+          <div class="achievement-card glass-panel">
+            <div class="achievement-header">
+              <div class="achievement-icon">◈</div>
+              <span class="badge-status active">IN PROGRESS</span>
+            </div>
+            <h3 class="achievement-title">LEVEL UP</h3>
+            <p class="achievement-desc">Currently developing skills in DSA, web development and AI.</p>
+            <div class="achievement-footer">
+              <span class="achieve-tag">CONTINUOUS LEARNING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION TIMELINE // EDUCATION -->
+    <section id="education" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">[ ACADEMIC TIMELINE ]</div>
+          <h2 class="section-title"><span class="title-num">05 //</span> EDUCATION TIMELINE</h2>
+        </div>
+
+        <div class="timeline-wrapper glass-panel">
+          <div class="timeline-item">
+            <div class="timeline-num">01</div>
+            <div class="timeline-content">
+              <h3 class="edu-degree">B.Tech Artificial Intelligence &amp; Data Science</h3>
+              <div class="edu-inst">REVA University</div>
+              <div class="edu-period">2025 - 2029</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-num">02</div>
+            <div class="timeline-content">
+              <h3 class="edu-degree">12th Grade</h3>
+              <div class="edu-inst">Higher Secondary Education</div>
+              <div class="edu-score glow-cyan">SCORE: 93.4%</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-num">03</div>
+            <div class="timeline-content">
+              <h3 class="edu-degree">10th Grade</h3>
+              <div class="edu-inst">Secondary School Certification</div>
+              <div class="edu-score">SCORE: 75%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 // MISSION CONTROL (CONTACT + TERMINAL) -->
+    <section id="contact" class="section-padding bg-alt">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">[ COMMUNICATION HUB ]</div>
+          <h2 class="section-title"><span class="title-num">06 //</span> MISSION CONTROL</h2>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left Column: Contact Actions -->
+          <div class="contact-card glass-panel">
+            <h3 class="contact-headline">
+              "Have a project?<br>Want to collaborate?<br>Found something interesting?"
+            </h3>
+
+            <p class="contact-subtext">
+              Reach out through official player channels or execute terminal commands.
+            </p>
+
+            <div class="contact-buttons">
+              <a href="https://www.linkedin.com/in/boya-devaarya-8412a6364/" target="_blank" rel="noopener noreferrer" class="btn btn-primary hud-btn">
+                <span class="btn-corner tl"></span><span class="btn-corner br"></span>
+                [ LINKEDIN ] <span class="btn-icon">↗</span>
+              </a>
+
+              <a href="https://github.com/BoyaDevaarya" target="_blank" rel="noopener noreferrer" class="btn btn-outline hud-btn">
+                <span class="btn-corner tl"></span><span class="btn-corner br"></span>
+                [ GITHUB ] <span class="btn-icon">↗</span>
+              </a>
+            </div>
+
+            <div class="system-status-box">
+              <span class="label">SYSTEM STATUS</span>
+              <span class="val glow-cyan">READY FOR NEW QUESTS <span class="pulse-dot">●</span></span>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Command Terminal -->
+          <div class="terminal-card glass-panel">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="terminal-title">DEVAARYA.EXE INTERACTIVE TERMINAL v2.0</div>
+            </div>
+
+            <div class="terminal-screen" id="terminal-screen">
+              <div class="term-line output">DEVAARYA.EXE Terminal online. Type <span class="term-cmd">'help'</span> for available commands.</div>
+            </div>
+
+            <div class="terminal-input-row">
+              <span class="term-prompt">DEVAARYA@PORTFOLIO:~$</span>
+              <input type="text" id="terminal-input" class="term-input" placeholder="Type a command (e.g. help, quests)..." autocomplete="off" spellcheck="false">
+            </div>
+
+            <div class="terminal-quick-cmds">
+              <span class="quick-label">QUICK COMMANDS:</span>
+              <button class="quick-cmd-btn" data-cmd="help">help</button>
+              <button class="quick-cmd-btn" data-cmd="about">about</button>
+              <button class="quick-cmd-btn" data-cmd="quests">quests</button>
+              <button class="quick-cmd-btn" data-cmd="skills">skills</button>
+              <button class="quick-cmd-btn" data-cmd="contact">contact</button>
+              <button class="quick-cmd-btn" data-cmd="clear">clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="hud-footer">
+    <div class="section-container footer-flex">
+      <div class="footer-left">
+        <div class="footer-logo">DEVAARYA<span class="accent-ext">.EXE</span></div>
+        <div class="footer-sys">PLAYER 01 // SYSTEM ONLINE</div>
+      </div>
+
+      <div class="footer-center">
+        <span class="built-tag">BUILT WITH CURIOSITY + CODE</span>
+      </div>
+
+      <div class="footer-right">
+        <div class="copyright">© 2026 BOYA DEVAARYA</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Secret Mode Konami Modal -->
+  <div id="secret-modal" class="hud-modal hidden">
+    <div class="modal-content glass-panel glow-border-purple">
+      <div class="modal-header">
+        <span class="modal-tag">*** GODMODE UNLOCKED ***</span>
+        <button id="close-modal-btn" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="secret-icon">⚡</div>
+        <h2 class="secret-title">SECRET MODE ACTIVATED!</h2>
+        <p class="secret-message">PLAYER LEVEL +1 // OVERDRIVE METRICS ENGAGED</p>
+        <div class="secret-stats">
+          <div>SPECIAL ITEM: <strong>KONAMI CODE BADGE 🏅</strong></div>
+          <div>STATUS: <strong>MAXIMUM POWER</strong></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="secret-ok-btn" class="btn btn-primary hud-btn">[ CONTINUE QUEST ]</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

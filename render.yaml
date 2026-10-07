@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: devaarya-portfolio
+    env: static
+    buildCommand: echo "Building DEVAARYA.EXE"
+    staticPublishPath: ./
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

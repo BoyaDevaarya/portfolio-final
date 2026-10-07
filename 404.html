@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERROR 404 // QUEST NOT FOUND - DEVAARYA.EXE</title>
+  <meta name="theme-color" content="#090a10">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="error-page-body">
+
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="error-wrapper">
+    <div class="error-card glass-panel glow-border-purple">
+      <div class="error-hud-header">
+        <span class="hud-tag error-tag">SIGNAL LOST // 0x404</span>
+        <span class="error-time">SYSTEM STATUS: OFFLINE</span>
+      </div>
+
+      <div class="error-content text-center">
+        <div class="error-glitch-text" data-text="ERROR 404">ERROR 404</div>
+        <h1 class="error-title">QUEST NOT FOUND</h1>
+        <p class="error-subtext">"Looks like you wandered outside the map."</p>
+
+        <div class="error-grid">
+          <div class="error-stat">
+            <span class="stat-label">LOCATION:</span>
+            <span class="stat-val glow-cyan">UNKNOWN COORDINATES</span>
+          </div>
+          <div class="error-stat">
+            <span class="stat-label">REASON:</span>
+            <span class="stat-val glow-purple">NON-EXISTENT SECTOR</span>
+          </div>
+        </div>
+
+        <div class="error-actions">
+          <a href="index.html" class="btn btn-primary hud-btn">
+            <span class="btn-corner tl"></span><span class="btn-corner br"></span>
+            [ RETURN TO BASE ]
+          </a>
+          <a href="index.html#quests" class="btn btn-outline hud-btn">
+            <span class="btn-corner tl"></span><span class="btn-corner br"></span>
+            [ VIEW QUESTS ]
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
